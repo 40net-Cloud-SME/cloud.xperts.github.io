@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reto con IA · AndesPay — XPERTS 2026</title>
+<style>
+  :root{--red:#DA291C;--ink:#141B27;--ink2:#4A5462;--card:#F5F7FA;--line:#E3E7ED;--dark:#0E1116;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 60px}
+  .eyebrow{display:inline-block;background:var(--red);color:#fff;font-weight:700;font-size:13px;letter-spacing:.04em;padding:6px 12px;border-radius:20px}
+  h1{font-size:30px;margin:14px 0 6px;line-height:1.15}
+  .sub{color:var(--ink2);font-size:16px;margin:0 0 22px}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
+  .box h2{font-size:14px;letter-spacing:.03em;text-transform:uppercase;color:var(--red);margin:0 0 10px}
+  .brief{font-size:14.5px;color:var(--ink2);line-height:1.5;margin:0}
+  .steps{font-size:15px;line-height:1.55;margin:0;padding-left:20px}
+  .promptwrap{position:relative;margin:22px 0}
+  pre{background:var(--dark);color:#E7ECF2;border-radius:14px;padding:22px 20px;overflow:auto;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;margin:0}
+  .copy{position:sticky;top:12px;float:right;margin:-8px 0 8px;background:var(--red);color:#fff;border:0;border-radius:10px;padding:11px 18px;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(218,41,28,.3)}
+  .copy:active{transform:translateY(1px)}
+  .copy.done{background:#2C8F63}
+  .hint{color:var(--ink2);font-size:13.5px;margin:8px 2px}
+  .followups{font-size:14.5px;color:var(--ink2);line-height:1.6}
+  .followups li{margin:4px 0}
+  footer{margin-top:34px;color:#9AA4B2;font-size:12.5px;border-top:1px solid var(--line);padding-top:14px}
+  @media print{.copy{display:none}body{font-size:12px}pre{white-space:pre-wrap}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">● RETO CON IA · XPERTS 2026</span>
+  <h1>¿Te gana la IA?</h1>
+  <p class="sub">En equipo, pídanle a su IA que diseñe la arquitectura de seguridad de <b>AndesPay</b>. Al final la comparamos contra la arquitectura de referencia de Fortinet.</p>
+
+  <div class="box">
+    <h2>Qué hacer · 5 minutos</h2>
+    <ol class="steps">
+      <li>Abran la IA de su preferencia (ChatGPT, Claude, Gemini, Copilot…).</li>
+      <li>Toquen <b>“Copiar prompt”</b> y péguenlo <b>tal cual</b>.</li>
+      <li>Dispárenlo y <b>no lean la respuesta todavía</b> — déjenla generándose y presten atención a la charla.</li>
+      <li>Al cierre, la comparamos: el equipo cuya IA quede más cerca del modelo de madurez se lleva los primeros puntos (Award <b>“IA Whisperer”</b>).</li>
+    </ol>
+  </div>
+
+  <div class="box">
+    <h2>El cliente · “AndesPay”</h2>
+    <p class="brief">Fintech latinoamericana en crecimiento · multi-cloud (AWS + Azure) + data center on-premise · app web y móvil de banca + APIs de open banking · chatbot LLM con acceso a datos vía servidor MCP · microservicios en Kubernetes + serverless · debe cumplir PCI DSS 4.0 y residencia de datos · sufre bots, credential stuffing y scraping · equipo de seguridad pequeño que quiere consolidar y bajar el TCO.</p>
+  </div>
+
+  <div class="promptwrap">
+    <button class="copy" id="copyBtn" onclick="copyPrompt()">Copiar prompt</button>
+    <pre id="prompt">Actúa como un arquitecto de ciberseguridad en la nube senior. Diseña una
+ARQUITECTURA DE SEGURIDAD DE REFERENCIA para el siguiente cliente:
+
+CLIENTE: "AndesPay", una fintech latinoamericana en fuerte crecimiento.
+- Opera en multi-cloud (AWS + Azure) y conserva un data center on-premise heredado.
+- Expone una app web y una app móvil de banca, más un set de APIs públicas para
+  partners (open banking).
+- Acaba de lanzar un chatbot de atención al cliente basado en un LLM, que consulta
+  datos de cuentas a través de un servidor MCP conectado a sistemas internos.
+- Corre microservicios en Kubernetes y funciones serverless.
+- Debe cumplir PCI DSS 4.0 y tiene exigencias de residencia de datos.
+- Sufre bots, credential stuffing y scraping contra su login y sus APIs.
+- Equipo de seguridad pequeño; quieren consolidar herramientas y bajar el TCO.
+
+ENTREGA la arquitectura organizada EXACTAMENTE en estas 4 capas, y para cada capa
+indica: (a) qué se protege, (b) el riesgo principal, (c) el control necesario:
+
+  1. PERÍMETRO / ENTREGA (balanceo, DDoS, edge, WAF de borde)
+  2. WORKLOAD / NUBE (postura CSPM/KSPM, protección de cargas, contenedores)
+  3. APLICACIÓN + SaaS (WAF de app, seguridad de API, bots, cumplimiento PCI, Shadow IT)
+  4. IA / AGENTES (seguridad del LLM, prompt injection, seguridad de MCP, Shadow AI)
+
+REQUISITOS DE FORMATO:
+- Para cada capa, propón productos concretos (marca-agnóstico está bien, pero si
+  conoces el portafolio de Fortinet, mapéalo).
+- Añade una sección final "MODELO DE MADUREZ": clasifica tu propio diseño en uno de
+  estos 4 niveles y justifica por qué —
+  Fundamental (disponibilidad + WAF base) /
+  Advanced (zero-day, APIs y bots con ML) /
+  Professional (cumplimiento PCI 4.0 + resiliencia multi-DC) /
+  Master (plataforma unificada + IA + SOC integrado).
+- Cierra con las 3 DECISIONES ARQUITECTÓNICAS más importantes y su justificación.
+- Máximo 1 página. Sé concreto, nada de relleno.</pre>
+  </div>
+  <p class="hint">¿La copia no funcionó? Selecciona todo el texto del recuadro y cópialo manualmente.</p>
+
+  <div class="box">
+    <h2>Mientras la IA trabaja (opcional)</h2>
+    <ul class="followups">
+      <li>“¿Qué NO incluiste que un atacante real aprovecharía primero?”</li>
+      <li>“Si el presupuesto solo alcanza para 2 de las 4 capas este año, ¿cuáles priorizas y por qué?”</li>
+    </ul>
+    <p class="hint">Guarden la respuesta (screenshot o copiada) — la necesitarán en la hoja de cosecha.</p>
+  </div>
+
+  <footer>Fortinet XPERTS 2026 · Track Cloud &amp; App Sec · Segmento 1 — Arquitectura de Ciberseguridad en la Nube</footer>
+</div>
+<script>
+function copyPrompt(){
+  var t=document.getElementById('prompt').innerText;
+  var b=document.getElementById('copyBtn');
+  function ok(){b.textContent='¡Copiado! ✓';b.classList.add('done');setTimeout(function(){b.textContent='Copiar prompt';b.classList.remove('done');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fallback(t,ok);});}
+  else{fallback(t,ok);}
+}
+function fallback(t,ok){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(a);}
+</script>
+</body>
+</html>
